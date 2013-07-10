@@ -14,6 +14,8 @@ using PocFunWeb.Models;
 namespace PocFunWeb.Controllers
 {
     using PocFunWeb.Extensions;
+    using PocFunWeb.Messages;
+    using PocFunWeb.Utilities;
 
     [Authorize]
     [InitializeSimpleMembership]
@@ -232,6 +234,10 @@ namespace PocFunWeb.Controllers
                 // 2.  Append #t=<token> to the returnUrl
                 // 3.  Redirect
 
+                var tokenService = new TokenServiceProxy();
+                var tokenRequest = new TokenRequest();
+//                tokenRequest.Initialize();
+//                var token = tokenService.RequestToken(tokenRequest);
                 returnUrl += "t=yabbadabbadoo";
                 return RedirectToLocal(returnUrl);
             }

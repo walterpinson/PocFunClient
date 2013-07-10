@@ -28,5 +28,12 @@ namespace PocFunWeb.Controllers
 
             return View();
         }
+
+        public ActionResult TokenTest()
+        {
+            ViewBag.Message = "Your token test page.";
+
+            return View();
+        }
     }
 }
