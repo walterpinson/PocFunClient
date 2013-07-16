@@ -1,4 +1,5 @@
 // Generated on 2013-07-10 using generator-angular 0.3.0
+/*jslint node: true */
 'use strict';
 var LIVERELOAD_PORT = 35729;
 var lrSnippet = require('connect-livereload')({ port: LIVERELOAD_PORT });
@@ -284,6 +285,11 @@ module.exports = function (grunt) {
   grunt.registerTask('default', [
     'jshint',
     'test',
-    'build'
+    'build',
+    'clean:server',
+    'concurrent:server',
+    'connect:livereload',
+    'open',
+    'watch'
   ]);
 };
