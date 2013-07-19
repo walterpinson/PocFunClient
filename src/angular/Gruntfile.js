@@ -218,7 +218,7 @@ module.exports = function (grunt) {
     karma: {
       unit: {
         configFile: 'karma.conf.js',
-        singleRun: true
+        autoWatch: true
       }
     },
     cdnify: {
@@ -285,11 +285,6 @@ module.exports = function (grunt) {
   grunt.registerTask('default', [
     'jshint',
     'test',
-    'build',
-    'clean:server',
-    'concurrent:server',
-    'connect:livereload',
-    'open',
-    'watch'
+    'build'
   ]);
 };

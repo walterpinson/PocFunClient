@@ -1,15 +1,11 @@
 'use strict';
 
-angular.module('angularApp', [])
+angular.module('poc', ['poc.jobApp.list', 'poc.service.jobs', 'poc.jobApp.temp'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/list-view', {
-        templateUrl: 'views/list-view.html',
-        controller: 'ListViewCtrl'
+        templateUrl: 'views/job-list.html',
+        controller: 'listCtrl'
       })
       .otherwise({
         redirectTo: '/'
