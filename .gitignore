@@ -108,3 +108,4 @@ UpgradeLog*.XML
 # Resharper
 *[Rr]e[Ss]harper.user
 _ReSharper.*/
+*.DotSettings
