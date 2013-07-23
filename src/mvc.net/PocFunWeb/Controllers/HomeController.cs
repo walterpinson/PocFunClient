@@ -31,7 +31,7 @@ namespace PocFunWeb.Controllers
 
         public ActionResult TokenTest()
         {
-            ViewBag.Message = "Your token test page, dude.";
+            ViewBag.Message = "Your token test page, dude.  Yupzee.";
 
             return View();
         }
