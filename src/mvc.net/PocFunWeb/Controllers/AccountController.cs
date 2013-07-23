@@ -238,8 +238,9 @@ namespace PocFunWeb.Controllers
                 var tokenRequest = new TokenRequest();
 //                tokenRequest.Initialize();
 //                var token = tokenService.RequestToken(tokenRequest);
-                returnUrl += "t=yabbadabbadoo";
-                return RedirectToLocal(returnUrl);
+                var fragment = "t=yabbadabbadoo";
+                return this.RedirectWithFragrment(returnUrl, fragment);
+                //return RedirectToLocal(returnUrl);
             }
 
             if (User.Identity.IsAuthenticated)
@@ -349,13 +350,18 @@ namespace PocFunWeb.Controllers
             {
                 return Redirect(returnUrl);
             }
-            else
-            {
-                if(null == returnUrl)
-                    return RedirectToAction("Index", "Home");
 
-                return RedirectToAction("Index", "Home").AddFragment(returnUrl);
+            return RedirectToAction("Index", "Home");
+        }
+
+        private ActionResult RedirectWithFragrment(string returnUrl, string fragment)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return RedirectToRoute(returnUrl).AddFragment(fragment);
             }
+
+            return null == returnUrl ? this.RedirectToAction("Index", "Home") : this.RedirectToAction("Index", "Home").AddFragment(fragment);
         }
 
         public enum ManageMessageId
