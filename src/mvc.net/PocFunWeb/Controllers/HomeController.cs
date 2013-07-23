@@ -28,7 +28,8 @@ namespace PocFunWeb.Controllers
 
             return View();
         }
-
+        
+        [Authorize]
         public ActionResult TokenTest()
         {
             ViewBag.Message = "Your token test page, dude.  Yupzee.";
