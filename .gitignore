@@ -109,3 +109,7 @@ UpgradeLog*.XML
 *[Rr]e[Ss]harper.user
 _ReSharper.*/
 *.DotSettings
+
+# WebStorm
+*.idea
+
