@@ -1,17 +1,21 @@
 angular
     .module('poc.service.jobs', [])
     .factory('jobService', [
-        '$http',
+        '$http', '$location',
         function($resource) {
-
+            var onEmpty = function() {
+                window.location = '/404';
+            };
+            var _URL_ = 'http://api.pocfun.wp.dev/v1';
             return {
                 getJobs: function() {
                     return $resource({
                         method: 'GET',
                         headers: {'Content-Type': 'application/json'},
                         isArray: true,
-                        url: 'http://api.pocfun.wp.dev/v1/jobs'
-                    });
+                        url: _URL_ + '/jobs'
+                    })
+                    .error(onEmpty);
                 }
             };
         }])

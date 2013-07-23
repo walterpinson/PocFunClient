@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('poc', ['poc.jobApp.list', 'poc.service.jobs', 'poc.jobApp.temp'])
+angular.module('poc', ['ui.bootstrap', 'poc.jobApp.list', 'poc.service.jobs', 'poc.jobApp.temp'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
