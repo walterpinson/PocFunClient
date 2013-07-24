@@ -15,7 +15,7 @@ namespace PocFunWeb
 
             routes.MapRoute(
                 name: "AngularClients",
-                url: "{application}/{controller}/{action}/{id}",
+                url: "{application}/views/{controller}/{action}/{id}",
                 defaults: new {application="poc",controller=UrlParameter.Optional, action=UrlParameter.Optional,id=UrlParameter.Optional}
             );
 
