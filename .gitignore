@@ -113,3 +113,7 @@ _ReSharper.*/
 # WebStorm
 *.idea
 
+# localdb
+*.mdf
+*.ldf
+
