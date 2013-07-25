@@ -227,19 +227,15 @@ namespace PocFunWeb.Controllers
                 return RedirectToAction("ExternalLoginFailure");
             }
 
+            // If the authentication was successful then we want ot go ahead and grab a 
+            // client token so that we can put it on the URL fragrment.
+            var token = GetClientAuthenticationToken();
+            var fragment = BuildTokenFragment(token);
+
+
             if (OAuthWebSecurity.Login(result.Provider, result.ProviderUserId, createPersistentCookie: false))
             {
-                // This is where you would get the client access token and then pass it back on the URL fragment.
-                // 1.  Get the token
-                // 2.  Append #t=<token> to the returnUrl
-                // 3.  Redirect
-
-                var tokenService = new TokenServiceProxy();
-                var tokenRequest = new TokenRequest();
-//                tokenRequest.Initialize();
-//                var token = tokenService.RequestToken(tokenRequest);
-                returnUrl += "t=yabbadabbadoo";
-                return RedirectToLocal(returnUrl);
+                return RedirectToLocal(returnUrl, fragment);
             }
 
             if (User.Identity.IsAuthenticated)
@@ -247,6 +243,8 @@ namespace PocFunWeb.Controllers
                 // If the current user is logged in add the new account
                 OAuthWebSecurity.CreateOrUpdateAccount(result.Provider, result.ProviderUserId, User.Identity.Name);
                 return RedirectToLocal(returnUrl);
+                // to be thorough, we would have added the fragment here as well.
+                // the POC is not likely to run this scenario.
             }
             else
             {
@@ -290,7 +288,11 @@ namespace PocFunWeb.Controllers
                         OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
                         OAuthWebSecurity.Login(provider, providerUserId, createPersistentCookie: false);
 
-                        return RedirectToLocal(returnUrl);
+                        // Obtain a client authentication token
+                        // Build a URL fragment to pass to the client
+                        var fragment = BuildTokenFragment(GetClientAuthenticationToken());
+
+                        return RedirectToLocal(returnUrl, fragment);
                     }
                     else
                     {
@@ -349,13 +351,39 @@ namespace PocFunWeb.Controllers
             {
                 return Redirect(returnUrl);
             }
-            else
-            {
-                if(null == returnUrl)
-                    return RedirectToAction("Index", "Home");
 
-                return RedirectToAction("Index", "Home").AddFragment(returnUrl);
+            return RedirectToAction("Index", "Home");
+        }
+
+        private ActionResult RedirectToLocal(string returnUrl, string fragment)
+        {
+            if (string.IsNullOrEmpty(fragment))
+                return Redirect(returnUrl);
+
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl).AddFragment(fragment);
             }
+
+            return RedirectToAction("Index", "Home").AddFragment(fragment);
+        }
+
+        private string GetClientAuthenticationToken()
+        {
+            var tokenService = new TokenServiceProxy();
+            var tokenRequest = new TokenRequest();
+            var token = "yabbadabbadoo";
+            //                tokenRequest.Initialize();
+            //                var token = tokenService.RequestToken(tokenRequest);
+
+            return token;
+        }
+
+        private string BuildTokenFragment(string token)
+        {
+            var fragment = String.Format("t={0}", token);
+
+            return fragment;
         }
 
         public enum ManageMessageId
@@ -379,7 +407,7 @@ namespace PocFunWeb.Controllers
             public override void ExecuteResult(ControllerContext context)
             {
                 OAuthWebSecurity.RequestAuthentication(Provider, ReturnUrl);
-            }
+            }   
         }
 
         private static string ErrorCodeToString(MembershipCreateStatus createStatus)

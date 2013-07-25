@@ -4,7 +4,7 @@ angular.module('poc', ['ui.bootstrap', 'poc.jobApp.list', 'poc.service.jobs', 'p
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/job-list.html',
+        templateUrl: 'apps/pocfun/views/job-list.html',
         controller: 'listCtrl'
       })
       .otherwise({

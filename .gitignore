@@ -113,3 +113,9 @@ _ReSharper.*/
 # WebStorm
 *.idea
 
+# PocFunWeb
+*.mdf
+*.ldf
+src/mvc.net/PocFunWeb/apps
+
+
