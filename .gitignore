@@ -114,8 +114,11 @@ _ReSharper.*/
 *.idea
 
 # Angular Client Deployment
-src/mvc.net/PocFunWeb/apps
+src/mvc.net/PocFunWeb/apps/
 
 # Local Database
-src/mvc.net/PocFunWeb/App_Data
+src/mvc.net/PocFunWeb/App_Data/
+*.mdf
+*.ldf
+
 
