@@ -113,3 +113,12 @@ _ReSharper.*/
 # WebStorm
 *.idea
 
+# Angular Client Deployment
+src/mvc.net/PocFunWeb/apps/
+
+# Local Database
+src/mvc.net/PocFunWeb/App_Data/
+*.mdf
+*.ldf
+
+

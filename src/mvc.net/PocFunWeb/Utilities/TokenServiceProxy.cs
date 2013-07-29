@@ -8,15 +8,19 @@
 
     public class TokenServiceProxy
     {
-        private string apiBaseUrl = "http://api.pocfun.wp.dev/security/";
+        private string apiBaseUrl = "http://security.pocfun.wp.dev/api/";
 
         public string RequestToken(TokenRequest tokenRequest)
         {
-            var apiAction = "getToken";
-            var address = apiBaseUrl + apiAction;            
+            var apiResource = "TokenRequest";
+            var address = apiBaseUrl + apiResource;
+            var jsonRequest = JsonConvert.SerializeObject(tokenRequest);
 
             var client = new WebClient();
-            var token = JsonConvert.DeserializeObject<string>(client.UploadString(address, tokenRequest.ToString()));
+            client.Headers.Add(HttpRequestHeader.ContentType, "application/json");
+            client.Headers.Add(HttpRequestHeader.AcceptCharset, "UTF-8");
+
+            var token = JsonConvert.DeserializeObject<string>(client.UploadString(address, jsonRequest));
 
             return token;
         }

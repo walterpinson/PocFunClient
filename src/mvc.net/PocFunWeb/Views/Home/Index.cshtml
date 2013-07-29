@@ -1,45 +1,91 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-@section featured {
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>@ViewBag.Title.</h1>
-                <h2>@ViewBag.Message</h2>
-            </hgroup>
-            <p>
-                To learn more about ASP.NET MVC visit
-                <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET MVC.
-                If you have any questions about ASP.NET MVC visit
-                <a href="http://forums.asp.net/1146.aspx/1?MVC" title="ASP.NET MVC Forum">our forums</a>.
-            </p>
-        </div>
-    </section>
+@if (@User.Identity.IsAuthenticated)
+{
+
+    <div ng-app="poc">
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+        <![endif]-->
+
+        <!--[if lt IE 9]>
+            <script src="http://localhost:9000/components/es5-shim/es5-shim.js"></script>
+            <script src="http://localhost:9000/components/json3/json3.min.js"></script>
+        <![endif]-->
+
+        <!-- build:css({.tmp,app}) styles/main.css -->
+        <link rel="stylesheet" href="http://localhost:9000/components/angular-ui/build/angular-ui.css"/>
+        <link rel="stylesheet" href="http://localhost:9000/styles/bootstrap.css"/>
+        <link rel="stylesheet" href="http://localhost:9000/styles/main.css"/>
+        <!-- endbuild -->
+
+        <!-- Add your site or application content here -->
+        <div class="container" ng-view=""></div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+        <script src="http://localhost:9000/components/angular-ui/build/angular-ui.js"></script>
+        <script src="http://localhost:9000/components/angular-bootstrap/ui-bootstrap.js"></script>
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="http://localhost:9000/scripts/app.js"></script>
+        <script src="http://localhost:9000/scripts/services/jobs.js"></script>
+        <script src="http://localhost:9000/scripts/controllers/job-list.js"></script>
+        <script src="http://localhost:9000/scripts/controllers/main.js"></script>
+
+        <!-- endbuild -->
+
+        <!-- build:js scripts/modules.js -->
+        <script src="http://localhost:9000/components/angular/angular-resource.js"></script>
+        <script src="http://localhost:9000/components/angular/angular-cookies.js"></script>
+        <script src="http://localhost:9000/components/angular/angular-sanitize.js"></script>
+        <!-- endbuild -->
+    </div>
 }
-<h3>We suggest the following:</h3>
-<ol class="round">
-    <li class="one">
-        <h5>Getting Started</h5>
-        ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-        enables a clean separation of concerns and that gives you full control over markup
-        for enjoyable, agile development. ASP.NET MVC includes many features that enable
-        fast, TDD-friendly development for creating sophisticated applications that use
-        the latest web standards.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
-    </li>
+else
+{
+    <text>
+        @section featured {
+            <section class="featured">
+                <div class="content-wrapper">
+                    <hgroup class="title">
+                        <h1>@ViewBag.Title.</h1>
+                        <h2>@ViewBag.Message</h2>
+                    </hgroup>
+                    <p>
+                        To learn more about ASP.NET MVC visit
+                        <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
+                        The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET MVC.
+                        If you have any questions about ASP.NET MVC visit
+                        <a href="http://forums.asp.net/1146.aspx/1?MVC" title="ASP.NET MVC Forum">our forums</a>.
+                    </p>
+                </div>
+            </section>
+        }
+    </text>
+    <h3>We suggest the following:</h3>
+    <ol class="round">
+        <li class="one">
+            <h5>Getting Started</h5>
+            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+            enables a clean separation of concerns and that gives you full control over markup
+            for enjoyable, agile development. ASP.NET MVC includes many features that enable
+            fast, TDD-friendly development for creating sophisticated applications that use
+            the latest web standards.
+            <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
+        </li>
 
-    <li class="two">
-        <h5>Add NuGet packages and jump-start your coding</h5>
-        NuGet makes it easy to install and update free libraries and tools.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
-    </li>
+        <li class="two">
+            <h5>Add NuGet packages and jump-start your coding</h5>
+            NuGet makes it easy to install and update free libraries and tools.
+            <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
+        </li>
 
-    <li class="three">
-        <h5>Find Web Hosting</h5>
-        You can easily find a web hosting company that offers the right mix of features
-        and price for your applications.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
-    </li>
-</ol>
+        <li class="three">
+            <h5>Find Web Hosting</h5>
+            You can easily find a web hosting company that offers the right mix of features
+            and price for your applications.
+            <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
+        </li>
+    </ol>
+}
