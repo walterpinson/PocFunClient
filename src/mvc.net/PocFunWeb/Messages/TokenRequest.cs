@@ -2,19 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using DotNetOpenAuth.AspNet;
 
 namespace PocFunWeb.Messages
 {
     public class TokenRequest
     {
-        public string UserId { get; set; }
+        public string UserName { get; set; }
 
         public string IpAddress { get; set; }
 
-        public void Initialize()
+        public DateTime RequestDate { get; set; }
+
+        public void Initialize(AuthenticationResult authentication)
         {
-            UserId = GetUserId();
+            var user = authentication.UserName;
+            if(string.IsNullOrEmpty(user))
+                user = GetUserName();
+
+            Initialize(user);
+        }
+
+        public void Initialize(string userName)
+        {
+            UserName = userName;
             IpAddress = GetIp();
+            RequestDate = DateTime.Now;
         }
 
         private static string GetIp()
@@ -25,7 +38,7 @@ namespace PocFunWeb.Messages
             return ip;
         }
 
-        private static string GetUserId()
+        private static string GetUserName()
         {
             string user = HttpContext.Current.User.Identity.Name;
             if (string.IsNullOrEmpty(user)) throw new Exception();

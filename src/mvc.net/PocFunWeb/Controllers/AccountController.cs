@@ -229,7 +229,7 @@ namespace PocFunWeb.Controllers
 
             // If the authentication was successful then we want ot go ahead and grab a 
             // client token so that we can put it on the URL fragrment.
-            var token = GetClientAuthenticationToken();
+            var token = GetClientAuthenticationToken(result.UserName);
             var fragment = BuildTokenFragment(token);
 
 
@@ -290,7 +290,7 @@ namespace PocFunWeb.Controllers
 
                         // Obtain a client authentication token
                         // Build a URL fragment to pass to the client
-                        var fragment = BuildTokenFragment(GetClientAuthenticationToken());
+                        var fragment = BuildTokenFragment(GetClientAuthenticationToken(model.UserName));
 
                         return RedirectToLocal(returnUrl, fragment);
                     }
@@ -368,13 +368,13 @@ namespace PocFunWeb.Controllers
             return RedirectToAction("Index", "Home").AddFragment(fragment);
         }
 
-        private string GetClientAuthenticationToken()
+        private string GetClientAuthenticationToken(string userName)
         {
             var tokenService = new TokenServiceProxy();
             var tokenRequest = new TokenRequest();
-            var token = "yabbadabbadoo";
-            //                tokenRequest.Initialize();
-            //                var token = tokenService.RequestToken(tokenRequest);
+//            var token = "yabbadabbadoo";
+            tokenRequest.Initialize(userName);
+            var token = tokenService.RequestToken(tokenRequest);
 
             return token;
         }
