@@ -254,7 +254,7 @@ namespace PocFunWeb.Controllers
                 ViewBag.ReturnUrl = returnUrl;
                 return View("ExternalLoginConfirmation", new RegisterExternalLoginModel { UserName = result.UserName, ExternalLoginData = loginData });
             }
-        `}
+        }
 
         //
         // POST: /Account/ExternalLoginConfirmation
