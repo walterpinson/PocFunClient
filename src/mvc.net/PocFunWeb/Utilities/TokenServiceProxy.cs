@@ -8,7 +8,7 @@
 
     public class TokenServiceProxy
     {
-        private string apiBaseUrl = "http://api.pocfun.wp.dev/v1/";
+        private string apiBaseUrl = "http://security.pocfun.wp.dev/api/";
 
         public string RequestToken(TokenRequest tokenRequest)
         {
