@@ -63,6 +63,5 @@
   "passfail"      : false,
   "white"         : false,
 
-  "maxerr"        : 100,
-  "indent"        : 2
+  "maxerr"        : 100
 }
