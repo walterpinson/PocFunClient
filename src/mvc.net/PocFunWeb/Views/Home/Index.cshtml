@@ -4,7 +4,7 @@
 @if (@User.Identity.IsAuthenticated)
 {
 
-    <div ng-app="poc">
+    <div id="ng-app" class="ng-app:poc" ng-app="poc">
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
         <![endif]-->
@@ -12,6 +12,7 @@
         <!--[if lt IE 9]>
             <script src="http://localhost:9000/components/es5-shim/es5-shim.js"></script>
             <script src="http://localhost:9000/components/json3/json3.min.js"></script>
+            <script src="http://localhost:9000/components/angular-ui/build/angular-ui-ieshiv.min.js"></script>
         <![endif]-->
 
         <!-- build:css({.tmp,app}) styles/main.css -->
@@ -23,7 +24,7 @@
         <!-- Add your site or application content here -->
         <div class="container" ng-view=""></div>
 
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
         <script src="http://localhost:9000/components/angular-ui/build/angular-ui.js"></script>
         <script src="http://localhost:9000/components/angular-bootstrap/ui-bootstrap.js"></script>
 
