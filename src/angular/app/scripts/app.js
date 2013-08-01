@@ -13,7 +13,7 @@ angular.module('poc', ['ui.bootstrap', 'poc.jobApp.list', 'poc.service.jobs', 'p
   })
   .run(function ($rootScope,$location){
     $rootScope.$on('$routeChangeStart',function(event,next,current){
-      if ($location.host() == 'localhost') {
+      if ($location.host() === 'localhost') {
         next.templateUrl = "views/"+next.templateUrl;
       } else {
         next.templateUrl = "apps/pocfun/views/"+next.templateUrl;
