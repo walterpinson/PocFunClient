@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('poc.jobApp.list', [])
-  .controller('listCtrl', function ($scope, $http, $location, jobService) {
+  .controller('listCtrl', function ($scope, $http, $routeParams, jobService) {
     $scope.jobs = [];
-    $scope.token = ($location.search()).t;
+    $scope.token = $routeParams.t;
 
     jobService
             .getJobs()
