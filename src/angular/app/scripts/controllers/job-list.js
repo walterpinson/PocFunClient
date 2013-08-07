@@ -6,7 +6,7 @@ angular.module('poc.jobApp.list', [])
     $scope.token = $routeParams.t;
 
     jobService
-            .getJobs()
+            .getJobs($scope.token)
             .success(function(data, status, headers, config) {
                 $scope.jobs = data;
             });

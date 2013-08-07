@@ -8,14 +8,14 @@ angular
             };
             var _URL_ = 'http://api.pocfun.wp.dev/v1';
             return {
-                getJobs: function() {
+                getJobs: function(token) {
                     return $resource({
                         method: 'GET',
-                        headers: {'Content-Type': 'application/json'},
+                        headers: {'Content-Type': 'application/json','PF-Api-Token': token },
                         isArray: true,
                         url: _URL_ + '/jobs'
-                    })
-                    .error(onEmpty);
+                    });
+                    //.error(onEmpty);
                 }
             };
         }])
