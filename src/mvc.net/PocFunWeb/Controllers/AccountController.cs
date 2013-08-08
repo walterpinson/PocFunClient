@@ -381,7 +381,7 @@ namespace PocFunWeb.Controllers
 
         private string BuildTokenFragment(string token)
         {
-            var fragment = String.Format("t={0}", token);
+            var fragment = String.Format("{0}", token);
 
             return fragment;
         }
