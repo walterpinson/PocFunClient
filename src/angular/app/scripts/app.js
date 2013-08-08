@@ -11,6 +11,9 @@ angular.module('poc', ['ui.bootstrap', 'poc.jobApp.list', 'poc.service.jobs', 'p
         redirectTo: '/'
       });
   })
+.config(function($httpProvider){
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+})
   .run(function ($rootScope,$location){
     $rootScope.$on('$routeChangeStart',function(event,next,current){
       if ($location.host() === 'localhost') {
